@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/usuario")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioController {
 
@@ -25,7 +25,15 @@ public class UsuarioController {
     }
 
 
+    @GetMapping
+    public ResponseEntity<BaseResponse> listarUsuarios(){
+        BaseResponse response = usuarioService.listarUsuarios();
+        return ResponseEntity.status(response.status()).body(response);
+    }
 
-
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<BaseResponse> deletarUsuario(@PathVariable String id){
+        BaseResponse response = usuarioService.deletarUsuario(id);
+        return ResponseEntity.status(response.status()).body(response);
+    }
 }

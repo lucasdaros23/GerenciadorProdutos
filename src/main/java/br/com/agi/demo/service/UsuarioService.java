@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @Service
 public class UsuarioService {
 
@@ -36,20 +38,36 @@ public class UsuarioService {
     public BaseResponse criarUsuario(CriarUsuarioRequest request){
         /// cria usuario
         Usuario novoUsuario = UsuarioMapper.map(request);
-        usuarioRepository.save(novoUsuario);
 
         /// cria calendario
         Calendario novoCalendario = new Calendario();
-        calendarioRepository.save(novoCalendario);
         Wishlist novoWishlist = new Wishlist();
-        wishlistRepository.save(novoWishlist);
 
         novoCalendario.setUsuario(novoUsuario);
         novoWishlist.setUsuario(novoUsuario);
         novoUsuario.setCalendario(novoCalendario);
         novoUsuario.setWishlist(novoWishlist);
 
+        calendarioRepository.save(novoCalendario);
+        wishlistRepository.save(novoWishlist);
+        usuarioRepository.save(novoUsuario);
         return new BaseResponse("Usuario criado com sucesso", HttpStatus.CREATED, novoUsuario);
+    }
+
+    public BaseResponse listarUsuarios(){
+        if(usuarioRepository.findAll().isEmpty()){
+            return new BaseResponse("Nenhum usuário cadastrado.",HttpStatus.NOT_FOUND,null);
+        }
+        return new BaseResponse("Usuários cadastrados encontrados.",HttpStatus.OK ,usuarioRepository.findAll());
+    }
+
+    public BaseResponse deletarUsuario(String id) {
+        Optional<Usuario> checkId = usuarioRepository.findById(id);
+        if (checkId.isEmpty()) {
+            return new BaseResponse("Não foi possivel encontrar um usuário com esse id", HttpStatus.NOT_FOUND,null);
+        }
+        usuarioRepository.deleteById(id);
+        return new BaseResponse("Usuario deletado com sucesso", HttpStatus.OK,usuarioRepository.findAll());
     }
 
 

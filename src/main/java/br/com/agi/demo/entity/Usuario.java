@@ -18,14 +18,16 @@ public class Usuario {
     @NotBlank
     private String nome;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "calendario_id", referencedColumnName = "id")
     @JsonIgnoreProperties("usuario")
     private Calendario calendario;
-    @OneToOne
 
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "wishlist_id", referencedColumnName = "id")
     @JsonIgnoreProperties("usuario")
     private Wishlist wishlist;
-
 
     public Usuario(String nome){
         this.nome = nome;

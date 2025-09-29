@@ -15,7 +15,8 @@ public class Calendario {
     @NotBlank
     private String id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     @JsonIgnoreProperties("calendario")
     private Usuario usuario;
 }
