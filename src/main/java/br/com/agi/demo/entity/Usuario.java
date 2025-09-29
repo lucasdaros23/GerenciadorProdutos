@@ -23,13 +23,13 @@ public class Usuario {
     @NotBlank
     private String nome;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne
     @JsonIgnoreProperties("usuario")
-    private Estoque estoque;
+    private Wishlist wishlist;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne
     @JsonIgnoreProperties("usuario")
-    private Produtos produtos;
+    private Calendario calendario;
 
     public Usuario(String nome){
         this.nome = nome;
