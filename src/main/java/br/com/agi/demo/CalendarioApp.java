@@ -4,10 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EstudoApplication {
-
+public class CalendarioApp {
 	public static void main(String[] args) {
-		SpringApplication.run(EstudoApplication.class, args);
+		SpringApplication.run(CalendarioApp.class, args);
 	}
 
 }

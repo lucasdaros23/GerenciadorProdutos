@@ -4,11 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Data
 @Entity
-public class Produtos {
+public class Compromisso {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @NotBlank
@@ -16,15 +17,19 @@ public class Produtos {
     @NotBlank
     private String nome;
 
+    private String descricao;
+    private LocalDateTime inicio;
+    private LocalDateTime fim;
+
     @ManyToOne
-    @JsonIgnoreProperties("produtos")
-    private Usuario usuario;
+    @JsonIgnoreProperties("compromissos")
+    private Calendario calendario;
 
     @ManyToOne
     @JsonIgnoreProperties("produtos")
-    private Estoque estoque;
+    private Wishlist wishlist;
 
-    public Produtos(String nome){
+    public Compromisso(String nome){
         this.nome = nome;
     }
 
