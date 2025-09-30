@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class Compromisso {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -18,6 +20,7 @@ public class Compromisso {
     private String nome;
 
     private String descricao;
+    private LocalDateTime dataCriacao;
     private LocalDateTime inicio;
     private LocalDateTime fim;
 

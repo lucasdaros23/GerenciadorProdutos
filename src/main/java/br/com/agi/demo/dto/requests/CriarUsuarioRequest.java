@@ -2,5 +2,5 @@ package br.com.agi.demo.dto.requests;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record CriarUsuarioRequest(@NotBlank String nome) {
+public record CriarUsuarioRequest(@NotBlank String nome, @NotBlank String senha) {
 }

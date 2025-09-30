@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class UsuarioMapper {
     public static Usuario map(final CriarUsuarioRequest request){
-        return new Usuario(request.nome());
+        return new Usuario(request.nome(), request.senha());
     }
 }

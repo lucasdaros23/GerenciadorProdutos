@@ -17,6 +17,8 @@ public class Usuario {
     private String id;
     @NotBlank
     private String nome;
+    @NotBlank
+    private String senha;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "calendario_id", referencedColumnName = "id")
@@ -29,7 +31,8 @@ public class Usuario {
     @JsonIgnoreProperties("usuario")
     private Wishlist wishlist;
 
-    public Usuario(String nome){
+    public Usuario(String nome, String senha){
         this.nome = nome;
+        this.senha = senha;
     }
 }
