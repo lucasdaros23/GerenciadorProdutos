@@ -6,6 +6,9 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -19,4 +22,8 @@ public class Calendario {
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     @JsonIgnoreProperties("calendario")
     private Usuario usuario;
+
+    @OneToMany(mappedBy = "calendario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("calendario")
+    private List<Compromisso> compromissos = new ArrayList<>();
 }

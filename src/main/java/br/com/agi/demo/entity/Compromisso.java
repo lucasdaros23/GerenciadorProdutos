@@ -29,7 +29,7 @@ public class Compromisso {
     private Calendario calendario;
 
     @ManyToOne
-    @JsonIgnoreProperties("produtos")
+    @JsonIgnoreProperties("compromissos")
     private Wishlist wishlist;
 
     public Compromisso(String nome){

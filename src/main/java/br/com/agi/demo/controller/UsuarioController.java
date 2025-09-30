@@ -19,7 +19,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<BaseResponse> criarUsuarios(@RequestBody @Valid final CriarUsuarioRequest request){
+    public ResponseEntity<BaseResponse> criarUsuario(@RequestBody @Valid final CriarUsuarioRequest request){
         BaseResponse response = usuarioService.criarUsuario(request);
         return ResponseEntity.status(response.status()).body(response);
     }

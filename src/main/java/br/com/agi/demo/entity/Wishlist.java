@@ -6,6 +6,9 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -19,4 +22,9 @@ public class Wishlist {
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     @JsonIgnoreProperties("wishlist")
     private Usuario usuario;
+
+
+    @OneToMany(mappedBy = "wishlist", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("wishlist")
+    private List<Compromisso> compromissos = new ArrayList<>();
 }

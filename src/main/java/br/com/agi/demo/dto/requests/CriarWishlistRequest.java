@@ -1,4 +1,6 @@
 package br.com.agi.demo.dto.requests;
 
-public record CriarWishlistRequest() {
+import jakarta.validation.constraints.NotBlank;
+
+public record CriarWishlistRequest(@NotBlank String usuarioId) {
 }
