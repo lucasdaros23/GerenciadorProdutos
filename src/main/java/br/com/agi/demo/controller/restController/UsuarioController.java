@@ -1,4 +1,4 @@
-package br.com.agi.demo.controller;
+package br.com.agi.demo.controller.restController;
 
 import br.com.agi.demo.dto.requests.CriarUsuarioRequest;
 import br.com.agi.demo.dto.response.BaseResponse;

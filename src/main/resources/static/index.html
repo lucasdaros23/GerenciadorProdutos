@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="'Bem-vindo, ' + ${nomeUsuario} + '!'">App Calendário</title>
+
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="mobile-screen">
+  <header>
+    <div class="menu-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <h1 style="text-align: center; font-size: 1rem; padding: 10px 0;"
+        th:text="'Olá, ' + ${nomeUsuario}">
+      Olá, Usuário
+    </h1>
+  </header>
+
+  <main class="content">
+    <a th:href="@{/calendario/123}" class="card-link">
+      <section class="card">
+        <h2>Calendário ></h2>
+      </section>
+    </a>
+
+    <a th:href="@{/wishlist/123}" class="card-link">
+      <section class="card">
+        <h2>Wishlist ></h2>
+      </section>
+    </a>
+  </main>
+</div>
+
+</body>
+</html>

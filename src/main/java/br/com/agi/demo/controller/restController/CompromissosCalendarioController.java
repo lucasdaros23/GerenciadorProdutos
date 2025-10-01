@@ -1,4 +1,4 @@
-package br.com.agi.demo.controller;
+package br.com.agi.demo.controller.restController;
 
 import br.com.agi.demo.dto.requests.CriarCompromissoCalendarioRequest;
 import br.com.agi.demo.dto.response.BaseResponse;
@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/calendario/compromisso")
+@RequestMapping("/calendario/")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CompromissosCalendarioController {
 
@@ -24,15 +24,15 @@ public class CompromissosCalendarioController {
         return ResponseEntity.status(response.status()).body(response);
     }
 
-    @GetMapping("/calendario/${calendarioId}/compromisso")
-    public ResponseEntity<BaseResponse> listarCompromissosPorCalendario(String calendarioId){
+    @GetMapping("/{calendarioId}/compromisso")
+    public ResponseEntity<BaseResponse> listarCompromissosPorCalendario(@PathVariable String calendarioId){
         BaseResponse response = compromissoService.listarCompromissosPorCalendario(calendarioId);
         return ResponseEntity.status(response.status()).body(response);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<BaseResponse> deletarUsuario(@PathVariable String id){
-        BaseResponse response = compromissoService.deletarCompromisso(id);
+    @DeleteMapping("/{calendarioId}/{id}")
+    public ResponseEntity<BaseResponse> deletarUsuario(@PathVariable String calendarioId,@PathVariable String id){
+        BaseResponse response = compromissoService.deletarCompromisso(id, calendarioId);
         return ResponseEntity.status(response.status()).body(response);
     }
 }

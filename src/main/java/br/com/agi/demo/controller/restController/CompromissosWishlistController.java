@@ -1,6 +1,5 @@
-package br.com.agi.demo.controller;
+package br.com.agi.demo.controller.restController;
 
-import br.com.agi.demo.dto.requests.CriarCompromissoCalendarioRequest;
 import br.com.agi.demo.dto.requests.CriarCompromissoWishlistRequest;
 import br.com.agi.demo.dto.response.BaseResponse;
 import br.com.agi.demo.service.CompromissoService;
@@ -9,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/wishlist/compromisso")
+@RequestMapping("/wishlist")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CompromissosWishlistController {
 
@@ -25,15 +24,15 @@ public class CompromissosWishlistController {
         return ResponseEntity.status(response.status()).body(response);
     }
 
-    @GetMapping("/wishlist/${wishlistId}/compromisso")
-    public ResponseEntity<BaseResponse> listarCompromissosPorWishlist(String wishlistId){
+    @GetMapping("/{wishlistId}/compromisso")
+    public ResponseEntity<BaseResponse> listarCompromissosPorWishlist(@PathVariable String wishlistId){
         BaseResponse response = compromissoService.listarCompromissosPorWishlist(wishlistId);
         return ResponseEntity.status(response.status()).body(response);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<BaseResponse> deletarUsuario(@PathVariable String id){
-        BaseResponse response = compromissoService.deletarCompromisso(id);
+    @DeleteMapping("/{wishlistId}/compromisso/{id}")
+    public ResponseEntity<BaseResponse> deletarUsuario(@PathVariable String wishlistId, @PathVariable String id){
+        BaseResponse response = compromissoService.deletarCompromisso(id, wishlistId);
         return ResponseEntity.status(response.status()).body(response);
     }
 }

@@ -5,7 +5,7 @@ import br.com.agi.demo.dto.requests.CriarCompromissoWishlistRequest;
 import br.com.agi.demo.dto.response.BaseResponse;
 import br.com.agi.demo.entity.Calendario;
 import br.com.agi.demo.entity.Compromisso;
-import br.com.agi.demo.entity.Usuario;
+import br.com.agi.demo.entity.Wishlist;
 import br.com.agi.demo.mapper.CompromissoMapper;
 import br.com.agi.demo.repository.CalendarioRepository;
 import br.com.agi.demo.repository.CompromissoRepository;
@@ -51,8 +51,8 @@ public class CompromissoService {
 
     public BaseResponse criarCompromissoWishlist(CriarCompromissoWishlistRequest request){
 
-        Optional<Calendario> calendarioOptional = calendarioRepository.findById(request.wishlistId());
-        if (calendarioOptional.isEmpty()) {
+        Optional<Wishlist> wishlistOptional = wishlistRepository.findById(request.wishlistId());
+        if (wishlistOptional.isEmpty()) {
             return new BaseResponse("Wishlist não encontrada.", HttpStatus.BAD_REQUEST, null);
         }
 
@@ -61,7 +61,7 @@ public class CompromissoService {
         }
 
         Compromisso novoCompromisso = CompromissoMapper.mapWishlist(request);
-        novoCompromisso.setCalendario(calendarioOptional.get());
+        novoCompromisso.setWishlist(wishlistOptional.get());
         compromissoRepository.save(novoCompromisso);
 
         return new BaseResponse("Compromisso criada com sucesso!", HttpStatus.CREATED, novoCompromisso);
@@ -72,7 +72,7 @@ public class CompromissoService {
         if(compromissoRepository.findByCalendarioId(calendarioId).isEmpty()){
             return new BaseResponse("Nenhum compromisso cadastrado.",HttpStatus.NOT_FOUND,null);
         }
-        return new BaseResponse("Compromissos criados encontrados.",HttpStatus.OK ,compromissoRepository.findAll());
+        return new BaseResponse("Compromissos criados encontrados.",HttpStatus.OK ,compromissoRepository.findByCalendarioId(calendarioId));
     }
 
 
@@ -80,13 +80,16 @@ public class CompromissoService {
         if(compromissoRepository.findByWishlistId(wishlistId).isEmpty()){
             return new BaseResponse("Nenhum compromisso cadastrado.",HttpStatus.NOT_FOUND,null);
         }
-        return new BaseResponse("Compromissos criados encontrados.",HttpStatus.OK ,compromissoRepository.findAll());
+        return new BaseResponse("Compromissos criados encontrados.",HttpStatus.OK ,compromissoRepository.findByWishlistId(wishlistId));
     }
 
-    public BaseResponse deletarCompromisso(String id) {
+    public BaseResponse deletarCompromisso(String id, String outroId) {
         Optional<Compromisso> checkId = compromissoRepository.findById(id);
         if (checkId.isEmpty()) {
             return new BaseResponse("Não foi possivel encontrar um compromisso com esse id", HttpStatus.NOT_FOUND,null);
+        }
+        if (calendarioRepository.findById(outroId).isEmpty() || wishlistRepository.findById(outroId).isEmpty()){
+            return new BaseResponse("Nao existe compromisso cadastrado nesse calendario/wishlist", HttpStatus.NOT_FOUND, null);
         }
         compromissoRepository.deleteById(id);
         return new BaseResponse("Usuario deletado com sucesso", HttpStatus.OK,compromissoRepository.findAll());
