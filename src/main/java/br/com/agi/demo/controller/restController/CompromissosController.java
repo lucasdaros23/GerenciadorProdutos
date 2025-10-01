@@ -1,6 +1,7 @@
 package br.com.agi.demo.controller.restController;
 
-import br.com.agi.demo.dto.requests.CriarCompromissoCalendarioRequest;
+import br.com.agi.demo.dto.requests.CriarCompromissoRequest;
+import br.com.agi.demo.dto.requests.CriarCompromissoWishlistRequest;
 import br.com.agi.demo.dto.response.BaseResponse;
 import br.com.agi.demo.service.CompromissoService;
 import jakarta.validation.Valid;
@@ -8,19 +9,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/compromisso/")
+@RequestMapping("/compromisso")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class CompromissosCalendarioController {
+public class CompromissosController {
 
     private final CompromissoService compromissoService;
 
-    public CompromissosCalendarioController(CompromissoService compromissoService) {
+    public CompromissosController(CompromissoService compromissoService) {
         this.compromissoService = compromissoService;
     }
 
-    @PostMapping("/compromisso")
-    public ResponseEntity<BaseResponse> criarCompromisso(@RequestBody @Valid final CriarCompromissoCalendarioRequest request){
-        BaseResponse response = compromissoService.criarCompromissoCalendario(request);
+    @PostMapping
+    public ResponseEntity<BaseResponse> criarCompromisso(@RequestBody @Valid final CriarCompromissoRequest request){
+        BaseResponse response = compromissoService.criarCompromisso(request);
         return ResponseEntity.status(response.status()).body(response);
     }
 

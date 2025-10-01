@@ -24,15 +24,15 @@ public class CompromissosWishlistController {
         return ResponseEntity.status(response.status()).body(response);
     }
 
-    @GetMapping("/{wishlistId}/compromisso")
-    public ResponseEntity<BaseResponse> listarCompromissosPorWishlist(@PathVariable String wishlistId){
-        BaseResponse response = compromissoService.listarCompromissosPorWishlist(wishlistId);
+    @GetMapping("/compromisso")
+    public ResponseEntity<BaseResponse> listarCompromissos(){
+        BaseResponse response = compromissoService.listarCompromissos();
         return ResponseEntity.status(response.status()).body(response);
     }
 
-    @DeleteMapping("/{wishlistId}/compromisso/{id}")
-    public ResponseEntity<BaseResponse> deletarUsuario(@PathVariable String wishlistId, @PathVariable String id){
-        BaseResponse response = compromissoService.deletarCompromisso(id, wishlistId);
+    @DeleteMapping("/compromisso/{id}")
+    public ResponseEntity<BaseResponse> deletarCompromisso(@PathVariable String id){
+        BaseResponse response = compromissoService.deletarCompromisso(id);
         return ResponseEntity.status(response.status()).body(response);
     }
 }
