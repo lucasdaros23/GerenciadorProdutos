@@ -67,7 +67,7 @@ public class UsuarioService {
             return new BaseResponse("Não foi possivel encontrar um usuário com esse id", HttpStatus.NOT_FOUND,null);
         }
         usuarioRepository.deleteById(id);
-        return new BaseResponse("Usuario deletado com sucesso", HttpStatus.OK,usuarioRepository.findAll());
+        return new BaseResponse("Usuario deletado com sucesso", HttpStatus.OK,null);
     }
 
 

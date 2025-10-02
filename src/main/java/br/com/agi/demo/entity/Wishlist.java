@@ -15,7 +15,6 @@ import java.util.List;
 public class Wishlist {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @NotBlank
     private String id;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

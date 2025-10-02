@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @NotBlank
     private String id;
     @NotBlank
     private String nome;

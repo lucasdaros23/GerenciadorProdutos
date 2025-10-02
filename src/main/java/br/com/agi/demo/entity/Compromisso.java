@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 public class Compromisso {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @NotBlank
     private String id;
     @NotBlank
     private String nome;
