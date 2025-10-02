@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title th:text="'Bem-vindo, ' + ${nomeUsuario} + '!'">App Calendário</title>
+  <title>App Calendário</title>
 
-  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
 
@@ -16,16 +16,22 @@
       <span></span>
       <span></span>
     </div>
-    <h1 style="text-align: center; font-size: 1rem; padding: 10px 0;"
-        th:text="'Olá, ' + ${nomeUsuario}">
-      Olá, Usuário
-    </h1>
   </header>
 
   <main class="content">
-    <a th:href="@{/calendario/123}" class="card-link">
+    <a th:href="@{/calendario/e2e5ec95-0ec7-46f1-be99-7ec0a004f52c}" class="card-link">
       <section class="card">
         <h2>Calendário ></h2>
+        <div class="calendarioItens">
+          <ul th:if="${!listaCompromissos.isEmpty()}">
+            <li th:each="compromisso : ${listaCompromissos}">
+              <strong th:text="${compromisso.nome}">Nome</strong>:
+              <br>
+              <strong th:text="${compromisso.descricao}">Descrição</strong>:
+            </li>
+          </ul>
+
+        </div>
       </section>
     </a>
 

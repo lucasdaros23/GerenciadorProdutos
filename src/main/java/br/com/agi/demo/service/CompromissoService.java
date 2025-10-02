@@ -12,6 +12,7 @@ import br.com.agi.demo.repository.WishlistRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -60,12 +61,11 @@ public class CompromissoService {
         return new BaseResponse("Compromisso criado com sucesso", HttpStatus.CREATED, novoCompromisso);
     }
 
-    public BaseResponse listarCompromissosPorCalendario(String calendarioId) {
-        if (compromissoRepository.findByCalendarioId(calendarioId).isEmpty()) {
-            return new BaseResponse("Nenhum compromisso cadastrado.", HttpStatus.NOT_FOUND, null);
-        }
-        return new BaseResponse("Compromissos criados encontrados.", HttpStatus.OK, compromissoRepository.findByCalendarioId(calendarioId));
+    public List<Compromisso> listarCompromissosPorCalendario(String calendarioId) {
+        return compromissoRepository.findByCalendarioId(calendarioId);
     }
+
+
 
 
     public BaseResponse listarCompromissosPorWishlist(String wishlistId) {
@@ -92,6 +92,10 @@ public class CompromissoService {
         return new BaseResponse("Compromisso deletado com sucesso", HttpStatus.OK,null);
     }
 
+
+    public List<Compromisso> listarPreviaCompromissosPorCalendario(String calendarioId) {
+        return compromissoRepository.findFirst3ByCalendarioIdOrderByInicioAsc(calendarioId);
+    }
 
 
 }

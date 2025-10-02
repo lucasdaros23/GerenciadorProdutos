@@ -10,4 +10,6 @@ import java.util.List;
 public interface CompromissoRepository extends JpaRepository<Compromisso,String> {
     List<Compromisso> findByCalendarioId(String compromissoId);
     List<Compromisso> findByWishlistId(String compromissoId);
+
+    List<Compromisso> findFirst3ByCalendarioIdOrderByInicioAsc(String calendarioId);
 }
