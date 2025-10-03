@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable; // Importe PathVariable
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List; // Importe List
 
@@ -31,7 +32,7 @@ public class HomeController {
 
         List<Compromisso> compromissos = compromissoService.listarCompromissosPorCalendario(calendarioIdPrincipal);
 
-        model.addAttribute("listaCompromissos", compromissos);
+        model.addAttribute("compromisso", compromissos.stream().findFirst());
         model.addAttribute("idCalendario", calendarioIdPrincipal);
 
         return "index";
