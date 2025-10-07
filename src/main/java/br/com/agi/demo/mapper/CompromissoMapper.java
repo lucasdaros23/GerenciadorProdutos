@@ -14,6 +14,8 @@ public class CompromissoMapper {
         compromisso.setDescricao(request.descricao());
         compromisso.setInicio(request.inicio());
         compromisso.setFim(request.fim());
+        compromisso.setTipo(request.tipo());
+        compromisso.setPaiId(request.paiId());
 
         compromisso.setDataCriacao(LocalDateTime.now());
 

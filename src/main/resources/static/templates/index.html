@@ -1,11 +1,14 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="../scripts/script.js"></script>
+  <!-- O script deve ser carregado no final do body para melhor performance,
+       mas no head com 'defer' também funciona bem. -->
+  <script src="../scripts/script.js" defer></script>
   <title>App Calendário</title>
-
   <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
@@ -23,8 +26,9 @@
     <a>
       <section class="card">
         <h2>Calendário ></h2>
+        <!-- Este é o container que o JS vai preencher. -->
         <div class="calendarioItens">
-          <pre id="containerCalendario" onload="listar()"></pre>
+          <!-- O conteúdo aqui será adicionado dinamicamente pelo script.js -->
         </div>
       </section>
     </a>
@@ -32,6 +36,10 @@
     <a class="card-link">
       <section class="card">
         <h2>Wishlist ></h2>
+        <!-- ADICIONE A CLASSE 'wishlistItens' AQUI -->
+        <div class="wishlistItens">
+          <!-- O conteúdo da wishlist será adicionado aqui -->
+        </div>
       </section>
     </a>
   </main>

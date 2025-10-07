@@ -5,6 +5,7 @@ import br.com.agi.demo.dto.response.BaseResponse;
 import br.com.agi.demo.entity.Calendario;
 import br.com.agi.demo.entity.Compromisso;
 import br.com.agi.demo.entity.Wishlist;
+import br.com.agi.demo.entity.enums.TipoCompromissoPai;
 import br.com.agi.demo.mapper.CompromissoMapper;
 import br.com.agi.demo.repository.CalendarioRepository;
 import br.com.agi.demo.repository.CompromissoRepository;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -31,39 +33,40 @@ public class CompromissoService {
 
     public BaseResponse criarCompromisso(CriarCompromissoRequest request){
         Compromisso novoCompromisso = CompromissoMapper.map(request);
+        boolean paiAssociado = false;
 
-        boolean hasCalendarioId = request.calendarioId() != null && !request.calendarioId().isBlank();
-        boolean hasWishlistId = request.wishlistId() != null && !request.wishlistId().isBlank();
 
-        if (hasCalendarioId && hasWishlistId) {
-            return new BaseResponse("Um compromisso deve pertencer a um Calendário OU a uma Wishlist, não a ambos.", HttpStatus.BAD_REQUEST, null);
-        }
-        if (!hasCalendarioId && !hasWishlistId) {
-            return new BaseResponse("É necessário fornecer o ID do Calendário ou da Wishlist.", HttpStatus.BAD_REQUEST, null);
-        }
-
-        if (hasCalendarioId) {
-            Optional<Calendario> calendarioOptional = calendarioRepository.findById(request.calendarioId());
-            if (calendarioOptional.isEmpty()) {
-                return new BaseResponse("Calendário com o ID fornecido não encontrado.", HttpStatus.NOT_FOUND, null);
+        if (request.tipo() == TipoCompromissoPai.CALENDARIO) {
+            Optional<Calendario> calendarioOptional = calendarioRepository.findById(request.paiId());
+            if (calendarioOptional.isPresent()) {
+                novoCompromisso.setCalendario(calendarioOptional.get());
+                paiAssociado = true;
             }
-            novoCompromisso.setCalendario(calendarioOptional.get());
-        }else {
-            Optional<Wishlist> wishlistOptional = wishlistRepository.findById(request.wishlistId());
-
-            if (wishlistOptional.isEmpty()) {
-                return new BaseResponse("Wishlist com o ID fornecido não encontrada.", HttpStatus.NOT_FOUND, null);
+        } else if (request.tipo() == TipoCompromissoPai.WISHLIST) {
+            Optional<Wishlist> wishlistOpt = wishlistRepository.findById(request.paiId());
+            if (wishlistOpt.isPresent()) {
+                novoCompromisso.setWishlist(wishlistOpt.get());
+                paiAssociado = true;
             }
-            novoCompromisso.setWishlist(wishlistOptional.get());
+        }else{
+            return new BaseResponse("Tipo de compromisso inválido", HttpStatus.BAD_REQUEST, null);
         }
+
+        if (!paiAssociado){
+            return new BaseResponse("Calendario/Wishlist não encontrados", HttpStatus.NOT_FOUND, null);
+        }
+
         Compromisso compromissoSalvo = compromissoRepository.save(novoCompromisso);
 
         return new BaseResponse("Compromisso criado com sucesso", HttpStatus.CREATED, novoCompromisso);
     }
 
+
+
     public List<Compromisso> listarCompromissosPorCalendario(String calendarioId) {
         return compromissoRepository.findByCalendarioId(calendarioId);
     }
+
 
 
 

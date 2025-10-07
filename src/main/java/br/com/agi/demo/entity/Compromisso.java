@@ -1,5 +1,6 @@
 package br.com.agi.demo.entity;
 
+import br.com.agi.demo.entity.enums.TipoCompromissoPai;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -22,6 +23,11 @@ public class Compromisso {
     private LocalDateTime dataCriacao;
     private LocalDateTime inicio;
     private LocalDateTime fim;
+
+    private String paiId;
+
+    @NotBlank
+    private TipoCompromissoPai tipo;
 
     @ManyToOne
     @JsonIgnoreProperties("compromissos")

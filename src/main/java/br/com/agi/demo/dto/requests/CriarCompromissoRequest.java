@@ -1,5 +1,6 @@
 package br.com.agi.demo.dto.requests;
 
+import br.com.agi.demo.entity.enums.TipoCompromissoPai;
 import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDateTime;
@@ -10,8 +11,8 @@ public record CriarCompromissoRequest(
         LocalDateTime dataCriacao,
         LocalDateTime inicio,
         LocalDateTime fim,
-        String calendarioId,
-        String wishlistId
+        TipoCompromissoPai tipo,
+        String paiId
 
 ) {
 }
