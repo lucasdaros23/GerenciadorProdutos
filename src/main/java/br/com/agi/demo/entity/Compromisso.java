@@ -4,6 +4,7 @@ import br.com.agi.demo.entity.enums.TipoCompromissoPai;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,7 +27,7 @@ public class Compromisso {
 
     private String paiId;
 
-    @NotBlank
+    @NotNull
     private TipoCompromissoPai tipo;
 
     @ManyToOne

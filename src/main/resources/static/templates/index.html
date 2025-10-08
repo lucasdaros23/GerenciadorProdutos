@@ -11,7 +11,7 @@
   <title>App Calendário</title>
   <link rel="stylesheet" href="../style/style.css">
 </head>
-<body>
+<body onload="listarCompromissos()" >
 
 <div class="mobile-screen">
   <header>
@@ -26,19 +26,15 @@
     <a>
       <section class="card">
         <h2>Calendário ></h2>
-        <!-- Este é o container que o JS vai preencher. -->
         <div class="calendarioItens">
-          <!-- O conteúdo aqui será adicionado dinamicamente pelo script.js -->
         </div>
       </section>
     </a>
 
-    <a class="card-link">
+    <a class="card-link" href="wishlist.html">
       <section class="card">
         <h2>Wishlist ></h2>
-        <!-- ADICIONE A CLASSE 'wishlistItens' AQUI -->
         <div class="wishlistItens">
-          <!-- O conteúdo da wishlist será adicionado aqui -->
         </div>
       </section>
     </a>
