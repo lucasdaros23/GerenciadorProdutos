@@ -5,13 +5,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- O script deve ser carregado no final do body para melhor performance,
-       mas no head com 'defer' também funciona bem. -->
-  <script src="../scripts/script.js" defer></script>
   <title>App Calendário</title>
   <link rel="stylesheet" href="../style/style.css">
 </head>
-<body onload="listarCompromissos()" >
+<body onload="popularMenu()" >
 
 <div class="mobile-screen">
   <header>
@@ -41,5 +38,8 @@
   </main>
 </div>
 
+
+  <script src="../scripts/menu.js" defer></script>
+  <script src="../scripts/script.js" defer></script>
 </body>
 </html>

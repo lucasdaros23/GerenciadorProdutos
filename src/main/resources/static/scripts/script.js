@@ -1,38 +1,27 @@
 const urlCompromissos = 'http://localhost:8080/compromisso';
 
-function listarCompromissos() {
-    fetch(urlCompromissos )
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na rede: ' + response.statusText);
-            }
-            return response.json();
-        })
-        .then(baseResponse => {
-            console.log("Dados recebidos da API:", baseResponse);
-
-            if (baseResponse && Array.isArray(baseResponse.data)) {
-                const todosCompromissos = baseResponse.data;
-
-            } else {
-                console.error("A resposta da API não contém um array 'data'.", baseResponse);
-                document.querySelector('.calendarioItens').textContent = 'Formato de dados inválido.';
-                document.querySelector('.wishlistItens').textContent = 'Formato de dados inválido.';
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao buscar compromissos:', error);
-            document.querySelector('.calendarioItens').textContent = 'Falha ao carregar dados.';
-            document.querySelector('.wishlistItens').textContent = 'Falha ao carregar dados.';
-        });
-
-        
+async function listarCompromissos() {
+    try {
+        const response = await fetch(urlCompromissos);
+        if (!response.ok) {
+            throw new Error('Erro na rede: ' + response.statusText);
+        }
+        const baseResponse = await response.json();
+        if (baseResponse && Array.isArray(baseResponse.data)) {
+            return baseResponse.data;
+        } else {
+            return [];
+        }
+    } catch (error) {
+        console.error('Erro ao buscar compromissos:', error);
+        return [];
+    }
 }
 
 
 function popularCalendario(compromissos) {
     const container = document.querySelector('.calendarioItens');
-    container.innerHTML = ''; // Limpa o container
+    container.innerHTML = '';
 
     const compromissosDoCalendario = compromissos.filter(c => c.tipo === 'CALENDARIO');
 

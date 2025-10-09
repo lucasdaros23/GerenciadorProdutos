@@ -1,26 +1,33 @@
-function criarItemWishlist(){
-    div = getElementById("item-list");
-    div.textContent = ''
+// Em criarItem.js
+async function criarItemWishlist() {
+    console.log("ta funcionando");
 
-    fetch(urlCompromissos )
-            .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro na rede: ' + response.statusText);
-            }
-            return response.json();
-        })
-        .then(baseResponse => {
-            console.log("Dados recebidos da API:", baseResponse);
+    // CORREÇÃO: Use o ID correto que está no HTML
+    let container = document.getElementById("wishlist-container"); 
+    if (!container) {
+        console.error("Elemento #wishlist-container não encontrado!");
+        return;
+    }
+    
+    container.innerHTML = "<p>Carregando...</p>"; // Limpa e mostra feedback
+    let texto = "";
 
-            if (baseResponse && Array.isArray(baseResponse.data)) {
-                const todosCompromissos = baseResponse.data;
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao buscar compromissos:', error);
-            document.querySelector('.calendarioItens').textContent = 'Falha ao carregar dados.';
-            document.querySelector('.wishlistItens').textContent = 'Falha ao carregar dados.';
+    const compromissos = await listarCompromissos();
+    const itensWishlist = compromissos.filter(c => c.tipo === 'WISHLIST');
+
+    // CORREÇÃO: Use a variável correta 'itensWishlist'
+    if (itensWishlist.length > 0) {
+        itensWishlist.forEach(element => {
+            texto += `
+                <div class="list-item">
+                    <h3>${element.nome}</h3>
+                    <p>${element.descricao}</p>
+                </div>
+            `;
         });
-        return todosCompromissos;   
+    } else {
+        texto = "<p>Nenhum item na sua wishlist.</p>";
+    }
+    
+    container.innerHTML = texto;
 }
-
