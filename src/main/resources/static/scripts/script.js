@@ -21,9 +21,11 @@ async function listarCompromissos() {
 
 function popularCalendario(compromissos) {
     const container = document.querySelector('.calendarioItens');
-    container.innerHTML = '';
 
     const compromissosDoCalendario = compromissos.filter(c => c.tipo === 'CALENDARIO');
+
+    document.getElementById("containerCalendarioTexto").innerHTML = ''
+    container.innerHTML = ''
 
     if (compromissosDoCalendario.length > 0) {
         compromissosDoCalendario.forEach(compromisso => {
@@ -38,9 +40,11 @@ function popularCalendario(compromissos) {
 
 function popularWishlist(compromissos) {
     const container = document.querySelector('.wishlistItens');
-    container.innerHTML = '';
 
     const itensDaWishlist = compromissos.filter(c => c.tipo === 'WISHLIST');
+
+    document.getElementById("containerWishlistTexto").innerHTML = ''
+    container.innerHTML = ''
 
     if (itensDaWishlist.length > 0) {
         itensDaWishlist.forEach(itemDesejado => {

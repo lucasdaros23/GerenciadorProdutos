@@ -4,9 +4,11 @@
 .detail-header {
     display: flex;
     align-items: center;
-    position: relative; /* Para centralizar o título corretamente */
+    justify-content: space-between;
+    position: relative;
     margin-bottom: 25px;
     padding: 10px 0;
+    align-items: center;
 }
 
 .back-button {
@@ -16,6 +18,7 @@
     text-decoration: none;
     transform: scaleY(1.3); /* Deixa a seta um pouco mais alta, como na imagem */
     cursor: pointer;
+    padding: 0 10px; 
 }
 
 .header-title {
@@ -26,11 +29,8 @@
     padding: 12px 20px;
     border-radius: 10px;
     text-align: center;
-    /* Centraliza o título na tela, desconsiderando o botão de voltar */
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     width: 70%; /* Largura da barra de título */
+    
 }
 
 /* --- Lista de Itens de Detalhe --- */
@@ -66,4 +66,9 @@
 .list-item p {
     font-size: 0.9rem;
     color: #8e8e93; /* Cor cinza para o subtítulo */
+}
+
+
+.add-button {
+    font-size: 32px; /* O '+' pode precisar de um ajuste de tamanho diferente */
 }
