@@ -15,13 +15,15 @@ async function criarCompromissoWIshlist() {
             body: JSON.stringify(novoItem)
         })
           if (!response.ok) {
-            // Se não foi, lança um erro com a mensagem de status
+            alert("não foi possivel criar o item")
             throw new Error(`Erro na requisição: ${response.status} ${response.statusText}`);
         }
 
         const data = await response.json();
 
         console.log('Item adicionado com sucesso:', data);
+        alert("item adicionado com sucesso")
+        window.location.href = '/wishlist.html'
         return data; 
     } catch (error) {
         console.error('Falha ao adicionar item:', error);

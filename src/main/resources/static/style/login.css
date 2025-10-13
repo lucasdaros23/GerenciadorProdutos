@@ -1,4 +1,3 @@
-/* Configurações Globais e Reset (Fornecido por você) */
         * {
             margin: 0;
             padding: 0;
@@ -7,7 +6,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #000; /* Fundo preto para fora da tela */
+            background-color: #000;
             color: #f5f5f7;
             display: flex;
             justify-content: center;
@@ -16,25 +15,23 @@
             padding: 20px 0;
         }
 
-        /* Simula a tela do celular (Fornecido por você) */
         .mobile-screen {
             width: 100%;
-            max-width: 430px; /* Largura aproximada de um iPhone 14 Pro Max */
+            max-width: 430px; 
             height: 850px;
-            background-color: #1c1c1e; /* Cor de fundo da tela do app */
+            background-color: #1c1c1e;
             border-radius: 40px;
             border: 10px solid #111;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             padding: 25px;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Centraliza o conteúdo de login verticalmente */
-            overflow: hidden; /* Garante que o conteúdo não saia das bordas arredondadas */
+            justify-content: center; 
+            overflow: hidden; 
         }
 
-        /* Container para o formulário de login */
         .login-container {
-            background-color: #2c2c2e; /* Cor de fundo do card */
+            background-color: #2c2c2e; 
             border-radius: 18px;
             padding: 40px 30px;
             width: 100%;
@@ -48,14 +45,14 @@
             font-weight: 500;
             color: #e5e5ea;
             margin-bottom: 40px;
-            letter-spacing: 8px; /* Espaçamento entre as letras */
+            letter-spacing: 8px;
         }
 
         form {
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 20px; /* Espaço entre os campos */
+            gap: 20px;
         }
 
         .input-group {
@@ -77,7 +74,7 @@
             padding: 15px;
             color: #f5f5f7;
             font-size: 1rem;
-            outline: none; /* Remove a borda ao focar */
+            outline: none;
             transition: border-color 0.3s ease;
         }
 

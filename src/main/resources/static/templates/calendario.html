@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wishlist - App Calendário</title>
+    <title>Calendario - App Calendário</title>
 
     <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="../style/wishlist.css">
+    <link rel="stylesheet" href="../style/calendario.css">
 
 </head>
 <body onload="criarItemWishlist()">
@@ -14,9 +14,15 @@
 <div class="mobile-screen">
     <header class="detail-header">
         <a href="index.html" class="back-button">&lt;</a>
-        <div class="header-title">Wishlist</div>
-        <a href = "criarWishlist.html" class="add-button">&#43;</a>
+        <a href = "criarCalendario.html" class="add-button">&#43;</a>
     </header>
+
+
+    <div class="cabecalho">
+        <button class="date-button">&lt;</button>
+        <div id ="calendarioTexto">Calendario</div>
+        <button class="date-button">&gt;</button>        
+    </div>
 
     <main class="content">
         <div class="item-list" id="wishlist-container">
