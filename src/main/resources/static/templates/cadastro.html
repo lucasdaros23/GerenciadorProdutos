@@ -11,25 +11,25 @@
 
 <div class="mobile-screen">
     <div class="login-container">
-        <h1>LOGIN</h1>
+        <h1>CADASTRO</h1>
         <form>
             <div class="input-group">
                 <label for="username">Usuário</label>
-                <input type="text" id="username" name="username">
+                <input type="text" id="usernameTexto" name="username">
             </div>
             <div class="input-group">
                 <label for="password">Senha</label>
-                <input type="password" id="password" name="password">
+                <input type="password" id="passwordTexto" name="password">
             </div>
-            <a href="index.html" class="button" onclick="alert('login realizado')">
-                ENTRAR
-            </a>
-            <a href="cadastro.html" class="button">
-                CRIAR CONTA
-            </a>
         </form>
+            <button class="button" onclick="criarConta()">
+                CRIAR CONTA
+            </button>
     </div>
 </div>
+
+<script src="../scripts/script.js"defer></script>
+<script src="../scripts/criarConta.js"defer></script>
 
 </body>
 </html>

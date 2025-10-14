@@ -3,36 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela de Login</title>
+    <title>Criar Compromisso</title>
     <link rel="stylesheet" href="../style/login.css">
     <link rel="stylesheet" href="../style/wishlist.css">
-
 </head>
 <body>
 
 <div class="mobile-screen">
-            <a href="index.html" class="back-button">&lt;</a>
+    <a href="index.html" class="back-button">&lt;</a>
 
     <div class="criar-wishlist-container">
         <h1>CRIAR COMPROMISSO</h1>
-        <form>
+        <form id="form-criar-compromisso">
             <div class="input-group">
-                <label for="nome">Nome</label>
-                <input type="text" id="nomeTexto" name="nome">
+                <label for="nomeTexto">Nome</label>
+                <input type="text" id="nomeTexto" name="nome" required>
             </div>
             <div class="input-group">
-                <label for="descricao">Descrição</label>
+                <label for="descricaoTexto">Descrição</label>
                 <input type="text" id="descricaoTexto" name="descricao">
             </div>
-            <button class="button" onclick="criarCompromissoWIshlist()">
+            <button type="submit" class="button" onclick="criarCompromissoWIshlist()">
                 CRIAR
             </button>
         </form>
     </div>
 </div>
 
-<script src="../scripts/script.js"defer></script>
-<script src="../scripts/criarCompromisso.js"defer></script>
+<script src="../scripts/script.js" defer></script>
+<script src="../scripts/criarCompromisso.js" defer></script>
 
 </body>
 </html>

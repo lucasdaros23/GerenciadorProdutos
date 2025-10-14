@@ -1,4 +1,7 @@
 const urlCompromissos = 'http://localhost:8080/compromisso';
+const urlUsuarios = 'http://localhost:8080/usuario';
+
+
 
 async function listarCompromissos() {
     try {
